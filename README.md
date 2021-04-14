@@ -12,4 +12,4 @@ Finally run the app with the command:
 
     npm install -g serve && serve -s build
 
-Open the URL in the browser: http://localhost:3000/
+Open the URL in the browser: http://localhost:5000/
