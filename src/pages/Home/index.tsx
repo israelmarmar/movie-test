@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
 import { Container, Card, Col, Row, Button, FormControl, Form } from 'react-bootstrap';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +15,7 @@ interface Movie {
 
 const Home = () => {
     let history = useHistory();
+    const submitBtnRef: React.RefObject<HTMLButtonElement> = React.createRef();
     const textStorage = localStorage.getItem('text') || '';
     const yearStorage = parseInt(localStorage.getItem('year') || '');
     const typeStorage = localStorage.getItem('type') || 'Movie';
@@ -51,7 +52,7 @@ const Home = () => {
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event && event.key === 'Enter') {
-            searchMovies();
+            submitBtnRef.current?.click();
         }
       }    
 
@@ -100,7 +101,7 @@ const Home = () => {
                         <Card.Text>
                             {movie.Year}
                         </Card.Text>
-                        <Button variant="primary" onClick={()=> history.push(`/detail/${movie.imdbID}`)}>
+                        <Button ref={submitBtnRef} variant="primary" onClick={()=> history.push(`/detail/${movie.imdbID}`)}>
                             Detail
                         </Button>
                 </Card.Body>
